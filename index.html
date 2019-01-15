@@ -60,14 +60,43 @@
             animation: spin 1s linear infinite;
         }
 
+        #shutdown-result{
+            font-size: 150pt;
+        }
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        a, a:hover,  a:visited{
+            color: #163151;
+        }
     </style>
 
     <script>
-        
+        MESSAGE_TEXT = {
+            "result": {
+                true: [ "Yeah...", "Yep...", "Sure is :(", "Sigh... Yes." ],
+                false: [ "Not any more!", "No!", "We're back in business!", "Nope." ]
+            },
+            "message": {
+                true: "The US government's still shutdown.",
+                false: "Looks like they cared enough to let people back to work. About time!"
+            }
+        }
+
+        $.get( "shutdown.json", function(data){
+            var result_message_index = Math.floor(Math.random() * MESSAGE_TEXT.result[data.is_shutdown].length);
+
+            $("#shutdown-result").html(MESSAGE_TEXT.result[data.is_shutdown][result_message_index]);
+            $("#shutdown-message").html(MESSAGE_TEXT.message[data.is_shutdown]);
+
+            if (data.link) {
+                $("#shutdown-message").append("<br/><span>Proof: <a href=\"" + data.link + "\">" + data.link + "</a>" );
+            }
+
+            setTimeout(function(){ $("#overlay").hide(); }, 300);
+        });
     </script>
 </head>
 <body>
@@ -81,8 +110,8 @@
     </div>
 
     <div class="text-center container">
-        <h1>{{ShutdownResult}}</h1>
-        <h2>{{ShutdownMessage}}</h2>
+        <h1 id="shutdown-result">{{ShutdownResult}}</h1>
+        <h3 id="shutdown-message">{{ShutdownMessage}}</h3>
     </div>
     <div class="fixed-bottom footer">
         <span>This is just poking a bit of fun. Don't expect it to be by-the-second accurate.</span>
