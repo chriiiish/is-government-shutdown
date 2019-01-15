@@ -17,20 +17,69 @@
             padding: 2em;
             padding-top: 10em;
         }
+        
         .footer{
             background-color:#CFB48A;
+            padding: 0 20%;
         }
+        
         html, body{
             height: 100%;
         }
+        
         body{
             background-image: linear-gradient(rgb(94, 113, 136), rgb(67, 81, 99));
         }
+
+        #overlay {
+            position: fixed; /* Sit on top of the page content */
+            display: block; /* Hidden by default */
+            width: 100%; /* Full width (cover the whole page) */
+            height: 100%; /* Full height (cover the whole page) */
+            top: 0; 
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #163151; /* Black background with opacity */
+            z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+            cursor: pointer; /* Add a pointer on hover */
+            padding-top: 10em;
+            color: #CFB48A;
+        }
+
+        .loader-holder{
+            padding-left: calc(50% - 60px);
+        }
+
+        .loader {
+            border: 16px solid #CFB48A; /* Light grey */
+            border-top: 16px solid #163151; /* Blue */
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 
-    <script></script>
+    <script>
+        
+    </script>
 </head>
 <body>
+
+    <div id="overlay" class="text-center">
+        <div class="loader-holder">
+            <div class="loader"></div>
+        </div>
+        <br/>
+        <span>Hmmm... Let's see...</span>
+    </div>
+
     <div class="text-center container">
         <h1>{{ShutdownResult}}</h1>
         <h2>{{ShutdownMessage}}</h2>
