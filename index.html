@@ -94,6 +94,11 @@
                 $("#shutdown-message").append("<br/><span>Proof: <a href=\"" + data.link + "\">" + data.link + "</a>" );
             }
 
+            //huehuehue
+            if (Math.floor(Math.random() * 10000) == 0){
+                window.location="/503.html";
+            }
+
             setTimeout(function(){ $("#overlay").hide(); }, 300);
         });
     </script>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Is the US government still shutdown?</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+    <style>
+        .container{
+            color: #CFB48A;
+            padding: 2em;
+            padding-top: 10em;
+        }
+        
+        .footer{
+            background-color:#CFB48A;
+            padding: 0 20%;
+        }
+        
+        html, body{
+            height: 100%;
+        }
+        
+        body{
+            background-image: linear-gradient(rgb(94, 113, 136), rgb(67, 81, 99));
+        }
+
+        #shutdown-result{
+            font-size: 50pt;
+        }
+
+        img.circle-tile{
+            border-radius: 50%;
+            border: 0px;
+            width: 300px;
+            height: 300px;
+            background: url("https://c2.staticflickr.com/4/3196/3144647385_7d0c0ec1b7_z.jpg?zz=1") 50% 50% no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <div class="text-center container">
+        <h1 id="shutdown-result">503: Service Unavailable</h1>
+        <br/>
+        <img class="circle-tile"/>
+        <br/><br/> 
+        <h3 id="shutdown-message">Oh and so is this website...</h3>
+    </div>
+    <div class="fixed-bottom footer">
+        <span>This won't be totally up-to-date.</span>
+    </div>
+</body>
+</html>
