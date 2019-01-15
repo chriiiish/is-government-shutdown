@@ -25,7 +25,8 @@
         .container{
             color: #CFB48A;
             padding: 2em;
-            padding-top: 10em;
+            padding-top: 20%;
+            padding-bottom: 3em;
         }
         
         .footer{
@@ -34,7 +35,7 @@
         }
         
         html, body{
-            height: 100%;
+            min-height: -webkit-fill-available;
         }
         
         body{
@@ -71,15 +72,37 @@
         }
 
         #shutdown-result{
-            font-size: 100pt;
+            font-size: 400%;
         }
 
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
         a, a:hover,  a:visited{
             color: #163151;
+        }
+
+        div.circle-tile{
+            border-radius: 50%;
+            border: 0 none;
+            width: 300px;
+            height: 300px;
+            background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Bald_Eagle_Portrait.jpg/614px-Bald_Eagle_Portrait.jpg") 50% 50% no-repeat;
+            background-size: cover;
+            margin: 0 calc(50% - 150px);
+        }
+
+        @media screen and (max-width: 600px){
+            div.circle-tile{
+                width: 170px;
+                height: 170px;
+                margin: 0 calc(50% - 85px);
+            }
+            #shutdown-result{
+                font-size: 40pt;
+            }
         }
     </style>
 
@@ -87,11 +110,11 @@
         MESSAGE_TEXT = {
             "result": {
                 true: [ "Yeah...", "Yep...", "Sure is :(", "Sigh... Yes." ],
-                false: [ "Not any more!", "No!", "We're back in business!", "Nope." ]
+                false: [ "Not any more!", "No!", "Open!", "Nope." ]
             },
             "message": {
                 true: "The US government's still shutdown.",
-                false: "Looks like they cared enough to let people back to work. About time!"
+                false: "We're back in business!"
             }
         }
 
@@ -102,12 +125,17 @@
             $("#shutdown-message").html(MESSAGE_TEXT.message[data.is_shutdown]);
 
             if (data.link) {
-                $("#shutdown-message").append("<br/><span>Proof: <a href=\"" + data.link + "\">" + data.link + "</a>" );
+                $("#shutdown-message").append("<br/><span>Proof: <a href=\"" + data.link + "\">" + data.link_name + "</a>" );
             }
 
             //huehuehue
             if (Math.floor(Math.random() * 10000) == 0){
                 window.location="/503.html";
+            }
+
+            if (data.is_shutdown == false){
+                $(".circle-tile").css('background', 'url("https://www.publicdomainpictures.net/pictures/150000/nahled/open-icon.jpg") 50% 50% no-repeat');
+                $(".circle-tile").css('background-size', 'cover');
             }
 
             setTimeout(function(){ $("#overlay").hide(); }, 300);
@@ -124,9 +152,10 @@
         <span>Hmmm... Let's see...</span>
     </div>
 
-    <div class="text-center container">
+    <div class="text-center container h-100">
         <h1 id="shutdown-result">{{ShutdownResult}}</h1>
-        <h3 id="shutdown-message">{{ShutdownMessage}}</h3>
+        <h4 id="shutdown-message">{{ShutdownMessage}}</h4>
+        <div class="circle-tile"></div>
     </div>
     <div class="fixed-bottom footer">
         <span>This won't be totally up-to-date.</span>
